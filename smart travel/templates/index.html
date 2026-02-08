@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart Travel Planner</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Travel Planner ✈🌍</h1>
+
+    <form id="plannerForm">
+      <label>Destination City:</label>
+      <input type="text" id="city" required />
+
+      <label>Start Date:</label>
+      <input type="date" id="startDate" required />
+
+      <label>End Date:</label>
+      <input type="date" id="endDate" required />
+
+      <label>Total Budget (₹):</label>
+      <input type="number" id="budget" min="1" step="100" required />
+
+      <label>Preference:</label>
+      <select id="preference">
+        <option value="nature">Nature</option>
+        <option value="culture">Culture</option>
+        <option value="adventure">Adventure</option>
+        <option value="food">Food</option>
+        <option value="shopping">Shopping</option>
+        <option value="relaxation">Relaxation</option>
+        <option value="nightlife">Nightlife</option>
+        <option value="history">History</option>
+        <option value="wellness">Wellness</option>
+      </select>
+
+      <label>Traveling With:</label>
+      <select id="group">
+        <option value="alone">Alone</option>
+        <option value="family">Family</option>
+        <option value="friends">Friends</option>
+      </select>
+
+      <button type="submit">Generate Plan</button>
+    </form>
+
+    <div class="output" id="output" style="display:none;"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

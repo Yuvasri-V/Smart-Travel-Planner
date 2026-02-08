@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Smart Travel Planner</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      font-family: 'Georgia', serif;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      color: #4b3b2b;
+      position: relative;
+    }
+
+    /* Overlay for darkening background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(30, 20, 10, 0.5);
+      z-index: 0;
+    }
+
+   
+
+    /* Container for login form */
+    .login-container {
+      position: relative;
+      z-index: 20;
+      background: #f3e9dc url('https://www.transparenttextures.com/patterns/old-mathematics.png') repeat;
+      max-width: 380px;
+      margin: auto;
+      padding: 2.5rem 2rem 3rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      border: 3px solid #a67c52;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #4b3b2b;
+      font-style: italic;
+      user-select: none;
+    }
+
+    /* Vintage paper texture overlay */
+    .login-container::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://www.transparenttextures.com/patterns/pw-maze-white.png') repeat;
+      opacity: 0.15;
+      pointer-events: none;
+      border-radius: 15px;
+      z-index: 1;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 2rem;
+      color: #6b4c2b;
+      text-align: center;
+      letter-spacing: 2px;
+      user-select: text;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Tagline with spinning globe */
+    .tagline {
+      position: relative;
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #7a5a33;
+      margin-bottom: 2rem;
+      text-align: center;
+      user-select: text;
+      z-index: 2;
+    }
+    .tagline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 30px;
+      height: 30px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Globe_icon.svg/1024px-Globe_icon.svg.png') no-repeat center center;
+      background-size: contain;
+      transform-origin: center;
+      animation: spinGlobe 10s linear infinite;
+      transform: translate(-50%, -50%);
+      opacity: 0.3;
+      z-index: -1;
+      filter: drop-shadow(0 0 1px rgba(0,0,0,0.2));
+    }
+    @keyframes spinGlobe {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    form {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      border: 2px solid #a67c52;
+      border-radius: 10px;
+      background: #fdf6e3;
+      font-family: 'Courier New', Courier, monospace;
+      color: #4b3b2b;
+      box-shadow: inset 1px 1px 5px #d6c4a1;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      outline-offset: 2px;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #6b4c2b;
+      box-shadow: 0 0 8px #a67c52;
+      outline: none;
+      background: #fff8e1;
+    }
+
+    /* Compass-shaped login button */
+    button {
+      position: relative;
+      background: #6b4c2b;
+      color: #fdf6e3;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 1rem 0;
+      border: none;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      margin: 1rem auto 0 auto;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(107, 76, 43, 0.6);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    button:hover,
+    button:focus {
+      background-color: #4e3a1f;
+      transform: scale(1.1);
+      outline: none;
+    }
+    /* Compass icon inside button */
+    button::before {
+      content: "";
+      display: block;
+      width: 28px;
+      height: 28px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Compass_rose_english_North.svg/1024px-Compass_rose_english_North.svg.png') no-repeat center center;
+      background-size: contain;
+      filter: drop-shadow(0 0 1px rgba(0,0,0,0.3));
+    }
+
+    /* Responsive */
+    @media (max-width: 420px) {
+      .login-container {
+        width: 90vw;
+        padding: 2rem 1.5rem 2.5rem 1.5rem;
+      }
+      button {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <main class="login-container" role="main" aria-label="Login form">
+    <h2>Smart Travel Planner</h2>
+    <div class="tagline">Plan Your Trip</div>
+    <form action="/login" method="post" novalidate>
+      <input type="text" name="username" placeholder="Username" required autocomplete="username" autofocus />
+      <input type="password" name="password" placeholder="Password" required autocomplete="current-password" />
+      <button type="submit" aria-label="Log in to Smart Travel Planner"></button>
+    </form>
+  </main>
+
+  <!-- Optional bird chirping sound -->
+  <audio autoplay loop muted>
+    <source src="https://www.soundjay.com/nature/bird-chirping-01.mp3" type="audio/mpeg" />
+  </audio>
+</body>
+</html>
